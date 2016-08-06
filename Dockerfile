@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 # Install dependencies
-RUN apt-get update && apt-get install lib32gcc1 wget -y
+RUN apt-get update && apt-get install lib32gcc1 wget curl file -y
 
 # Add new user
 RUN adduser --disabled-password --gecos '' l4d2server
