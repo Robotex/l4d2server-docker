@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 # Install dependencies
-RUN apt-get update && apt-get install lib32gcc1 wget curl file -y
+RUN apt-get update && apt-get install lib32gcc1 wget curl file tmux -y
 
 # Add new user
 RUN adduser --disabled-password --gecos '' l4d2server
