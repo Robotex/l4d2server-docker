@@ -1,4 +1,5 @@
 FROM ubuntu:xenial
+MAINTAINER Robotex
 
 # Prevent some warnings
 ARG DEBIAN_FRONTEND=noninteractive
@@ -12,7 +13,7 @@ USER l4d2server
 WORKDIR /home/l4d2server
 
 # Download LGSM
-RUN curl --remote-name http://gameservermanagers.com/dl/l4d2server && chmod +x l4d2server
+RUN curl --remote-name -L http://gameservermanagers.com/dl/l4d2server && chmod +x l4d2server
 
 # Install Left 4 Dead 2
 RUN ./l4d2server auto-install
