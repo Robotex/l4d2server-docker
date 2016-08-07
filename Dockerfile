@@ -8,8 +8,6 @@ RUN adduser --disabled-password --gecos '' l4d2server
 USER l4d2server
 WORKDIR /home/l4d2server
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # Download LGSM
 RUN wget http://gameservermanagers.com/dl/l4d2server && chmod +x l4d2server
 
