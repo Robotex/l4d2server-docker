@@ -5,7 +5,7 @@ MAINTAINER Robotex
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install tmux mailutils postfix curl file lib32gcc1 libstdc++6 -y
+RUN dpkg --add-architecture i386 && apt-get update && apt-get install tmux mailutils postfix curl file lib32gcc1 libstdc++6 libstdc++6:i386 -y
 
 # Add new user
 RUN adduser --disabled-password --gecos '' l4d2server
