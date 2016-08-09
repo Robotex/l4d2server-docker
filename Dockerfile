@@ -19,7 +19,7 @@ RUN curl --remote-name -L http://gameservermanagers.com/dl/l4d2server && chmod +
 RUN ./l4d2server auto-install
 
 # SteamCMD fix
-RUN mkdir -pv ~/.steam/sdk32 && ln -s "./steamcmd/linux32/steamclient.so" "~/.steam/sdk32/steamclient.so"
+RUN mkdir -pv ~/.steam/sdk32 && ln -s steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
 # Specify port binding
 ENV SRCDS_PORT=27015
