@@ -4,13 +4,15 @@ MAINTAINER Robotex
 # Install dependencies
 RUN apt-get update && apt-get install lib32gcc1 wget -y
 
+# Change work directory
+WORKDIR /home/l4d2server
+
 # Copy script
 COPY downloader.sh ./
 
 # Add new user and assign ownership
 RUN adduser --disabled-password --gecos '' l4d2server && chown l4d2server downloader.sh && chmod +x downloader.sh
 USER l4d2server
-WORKDIR /home/l4d2server
 
 # Create steamcmd directory
 RUN mkdir ~/steamcmd && cd ~/steamcmd
