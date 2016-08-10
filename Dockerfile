@@ -26,7 +26,7 @@ RUN ./downloader.sh && rm downloader.sh
 
 # SteamCMD fix
 WORKDIR /home/l4d2server/
-RUN mkdir -pv ~/.steam/sdk32 && ln -s steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
+RUN mkdir -pv ~/.steam/sdk32 && ln -s ~/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
 # Specify port binding
 ENV SRCDS_PORT=27015
