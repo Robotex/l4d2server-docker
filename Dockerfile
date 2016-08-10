@@ -18,14 +18,14 @@ USER l4d2server
 RUN mkdir ~/steamcmd
 
 # Download and extract SteamCMD for Linux
-WORKDIR ~/steamcmd
-RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && tar -xf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz
+WORKDIR /home/l4d2server/steamcmd/
+RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && tar -xf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz && mv ../downloader.sh ./
 
 # Install Left 4 Dead 2
 RUN ./downloader.sh && rm downloader.sh
 
 # SteamCMD fix
-WORKDIR ~/
+WORKDIR /home/l4d2server/
 RUN mkdir -pv ~/.steam/sdk32 && ln -s steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
 # Specify port binding
