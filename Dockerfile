@@ -24,7 +24,14 @@ RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz 
 # Install Left 4 Dead 2
 RUN ./downloader.sh && rm downloader.sh
 
+# SteamCMD fix
+WORKDIR ~/
+RUN mkdir -pv ~/.steam/sdk32 && ln -s steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
+
+# Specify port binding
+ENV SRCDS_PORT=27015
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
 
-ENTRYPOINT ["/home/l4d2server/serverfiles/srcds_run"]
+ENTRYPOINT ["./serverfiles/srcds_run", "-game", "left4dead2", "-strictportbind"]
+CMD ["-port", "echo $SRCDS_PORT", "-ip", "0.0.0.0", "+clientport", "27005", "+map", "c5m1_waterfront", "+servercfgfile", "l4d2-server.cfg", "-maxplayers", "12"]
