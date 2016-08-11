@@ -2,7 +2,7 @@
 # Author: Robotex
 
 find_and_replace() {
-    sed -i "" "s/$1/$2/g" l4d2server
+    sed -i "s/$1/$2/g" l4d2server
     local retval=$?
     if [ "$retval" != 0 ]
     then
