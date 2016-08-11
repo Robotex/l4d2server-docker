@@ -33,6 +33,5 @@ ENV SRCDS_PORT=27015
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
 
-WORKDIR /home/l4d2server/serverfiles/
-ENTRYPOINT ["./srcds_run", "-game", "left4dead2", "-strictportbind"]
+ENTRYPOINT [".serverfiles/srcds_run", "-game", "left4dead2", "-strictportbind"]
 CMD ["-port", "echo $SRCDS_PORT", "-ip", "0.0.0.0", "+clientport", "27005", "+map", "c5m1_waterfront", "+servercfgfile", "l4d2-server.cfg", "-maxplayers", "12"]
