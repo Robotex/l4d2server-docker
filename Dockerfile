@@ -5,7 +5,7 @@ MAINTAINER Robotex
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install bzip2 bsdmainutils python-minimal tmux mailutils nullmailer curl file lib32gcc1 libstdc++6 libstdc++6:i386 -y
+RUN dpkg --add-architecture i386 && apt-get update && apt-get install wget bzip2 bsdmainutils python-minimal tmux mailutils nullmailer curl file lib32gcc1 libstdc++6 libstdc++6:i386 -y
 
 # Copy scripts
 COPY update_defaults.sh ./
