@@ -24,5 +24,7 @@ RUN ./update_defaults.sh
 # Install Left 4 Dead 2
 RUN ./l4d2server auto-install
 
+VOLUME ["/home/l4d2server/serverfiles/left4dead2/addons", "/home/l4d2server/serverfiles/left4dead2/cfg"]
+
 ENTRYPOINT ["./l4d2server"]
 CMD ["start"]

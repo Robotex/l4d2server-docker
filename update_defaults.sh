@@ -13,3 +13,4 @@ find_and_replace() {
 }
 
 find_and_replace 'githubuser="dgibbs64"' 'githubuser="Robotex"'
+find_and_replace 'updateonstart="off"' 'updateonstart="on"'
