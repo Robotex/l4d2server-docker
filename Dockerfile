@@ -37,5 +37,5 @@ ENV SRCDS_BIND_IP=0.0.0.0
 EXPOSE ${SRCDS_BIND_PORT}/tcp
 EXPOSE ${SRCDS_BIND_PORT}/udp
 
-ENTRYPOINT ["./l4d2server-entrypoint.sh", "-game", "left4dead2", "-autoupdate", "-strictportbind", "-port", "echo $SRCDS_BIND_PORT", "-ip", "echo $SRCDS_BIND_IP", "+clientport", "27005"]
+ENTRYPOINT ["./l4d2server-entrypoint.sh", "-game", "left4dead2", "-strictportbind", "-port", "echo $SRCDS_BIND_PORT", "-ip", "echo $SRCDS_BIND_IP", "+clientport", "27005"]
 CMD ["+map", "c5m1_waterfront", "+servercfgfile", "l4d2-server.cfg", "-maxplayers", "12"]
