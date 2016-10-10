@@ -29,7 +29,7 @@ RUN ./downloader.sh && rm downloader.sh
 WORKDIR /home/l4d2server/
 RUN mkdir -pv ~/.steam/sdk32 && ln -s ~/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
-VOLUME ["/home/l4d2server/serverfiles/left4dead2/addons", "/home/l4d2server/serverfiles/left4dead2/cfg"]
+# VOLUME ["/home/l4d2server/serverfiles/left4dead2/addons", "/home/l4d2server/serverfiles/left4dead2/cfg"]
 
 # Specify port binding
 ENV SRCDS_BIND_PORT=27015
