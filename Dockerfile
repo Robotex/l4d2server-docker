@@ -12,7 +12,7 @@ COPY downloader.sh /tmp
 COPY l4d2server-entrypoint.sh /tmp
 
 # Add new user and assign ownership
-RUN adduser --disabled-password --gecos '' l4d2server && chown l4d2server /tmp/downloader.sh && chmod +x /tmp/downloader.sh && mv /tmp/downloader.sh /home/l4d2server/ && chown l4d2server /tmp/l4d2server-entrypoint.sh && chmod +x /tmp/l4d2server-entrypoint.sh && mv /tmp/l4d2server-entrypoint.sh /home/l4d2server/
+RUN adduser --disabled-password --gecos '' l4d2server && chown l4d2server:l4d2server /tmp/downloader.sh && chmod +x /tmp/downloader.sh && mv /tmp/downloader.sh /home/l4d2server/ && chown l4d2server:l4d2server /tmp/l4d2server-entrypoint.sh && chmod +x /tmp/l4d2server-entrypoint.sh && mv /tmp/l4d2server-entrypoint.sh /home/l4d2server/
 USER l4d2server
 
 # Create steamcmd directory
