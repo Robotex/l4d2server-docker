@@ -4,7 +4,7 @@ FROM ubuntu:yakkety
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Enable the multiuniverse and install SteamCMD
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update \
     && apt-get --assume-yes install steamcmd \
     && apt-get clean \
