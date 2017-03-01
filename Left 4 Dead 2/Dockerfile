@@ -3,8 +3,9 @@ FROM ubuntu:yakkety
 # Prevent some warnings
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install SteamCMD
-RUN apt-get update \
+# Enable the multiuniverse and install SteamCMD
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
+    && apt-get update \
     && apt-get --assume-yes install steamcmd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
