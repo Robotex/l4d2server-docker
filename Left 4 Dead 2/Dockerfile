@@ -4,10 +4,10 @@ FROM ubuntu:yakkety
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Enable the multiuniverse and install SteamCMD
-RUN apt-add-repository multiverse \
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update \
-    && apt-get --assume-yes install steamcmd \
-    && apt-get clean \
+    && apt-get -y install steamcmd \
+#    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy scripts
