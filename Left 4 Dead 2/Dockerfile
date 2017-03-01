@@ -5,9 +5,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Enable the multiuniverse and install SteamCMD
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+    && dpkg --add-architecture i386 \
     && apt-get update \
     && apt-get -y install steamcmd \
-#    && apt-get clean \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy scripts
