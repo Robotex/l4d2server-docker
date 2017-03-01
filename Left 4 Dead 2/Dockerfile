@@ -27,6 +27,6 @@ VOLUME ["/srv/l4d2server/"]
 # Specify port binding
 ENV SRCDS_BIND_PORT=27015
 ENV SRCDS_BIND_IP=0.0.0.0
-EXPOSE ${SRCDS_BIND_PORT}/tcp EXPOSE ${SRCDS_BIND_PORT}/udp
+EXPOSE ${SRCDS_BIND_PORT}/tcp ${SRCDS_BIND_PORT}/udp
 
 CMD ["/srv/l4d2server/entrypoint.sh"]
