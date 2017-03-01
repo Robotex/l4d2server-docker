@@ -1,0 +1,22 @@
+FROM ubuntu:yakkety
+
+# Prevent some warnings
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install SteamCMD
+RUN apt-get update \
+    && apt-get --assume-yes install steamcmd \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy scripts
+COPY update_l4d2_ds.txt /srv/l4d2server/update.txt
+COPY entrypoint.sh /srv/l4d2server/entrypoint.sh
+
+# Add new user and assign ownership
+RUN adduser --disabled-password --gecos '' gameserver \
+    && chown gameserver:gameserver /srv/l4d2server/update.txt \
+    && chown gameserver:gameserver /srv/l4d2server/entrypoint.sh \
+    && chmod +x /srv/l4d2server/entrypoint.sh
+
+CMD ["/srv/l4d2server/entrypoint.sh"]
