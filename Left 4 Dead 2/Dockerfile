@@ -22,4 +22,11 @@ RUN adduser --disabled-password --gecos '' gameserver \
     && chown gameserver:gameserver /srv/l4d2server/entrypoint.sh \
     && chmod +x /srv/l4d2server/entrypoint.sh
 
+VOLUME ["/srv/l4d2server/"]
+
+# Specify port binding
+ENV SRCDS_BIND_PORT=27015
+ENV SRCDS_BIND_IP=0.0.0.0
+EXPOSE ${SRCDS_BIND_PORT}/tcp EXPOSE ${SRCDS_BIND_PORT}/udp
+
 CMD ["/srv/l4d2server/entrypoint.sh"]
