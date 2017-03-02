@@ -20,4 +20,4 @@ EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 # Switch to non root user
 USER gameserver
 
-CMD ["+map gm_construct"]
+CMD ["-game garrysmod", "+map gm_construct"]

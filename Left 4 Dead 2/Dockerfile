@@ -20,4 +20,4 @@ EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 # Switch to non root user
 USER gameserver
 
-CMD ["+map c5m1_waterfront"]
+CMD ["-game left4dead2", "+map c5m1_waterfront"]

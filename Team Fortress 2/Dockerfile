@@ -9,8 +9,9 @@ ENV GAME=tf2
 # Copy scripts
 COPY update_tf2_ds.txt /srv/${GAME}/update.txt
 
-# Assign ownership
-RUN chown gameserver:gameserver /srv/${GAME}/update.txt
+# Install dependencies & assign files ownership
+RUN apt-get install lib32ncurses5 \
+    && chown gameserver:gameserver /srv/${GAME}/update.txt
 
 # Specify port binding
 ENV BIND_PORT=27015
@@ -20,4 +21,4 @@ EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 # Switch to non root user
 USER gameserver
 
-CMD ["+map ctf_2fort"]
+CMD ["-game tf2", "+map ctf_2fort"]
