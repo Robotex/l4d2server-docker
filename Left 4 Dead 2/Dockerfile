@@ -20,9 +20,4 @@ EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 # Switch to non root user
 USER gameserver
 
-# Steam fix
-RUN mkdir -pv ~/.steam/sdk32/ \
-    && ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
-
-ENTRYPOINT ["/srv/l4d2/entrypoint.sh"]
 CMD ["+map c5m1_waterfront"]

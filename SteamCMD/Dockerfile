@@ -14,7 +14,13 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
 
 COPY entrypoint.sh /srv/entrypoint.sh
 
-# Add new user and assign ownership
+# Add new user and assign ownership of entrypoint script
 RUN adduser --disabled-password --gecos '' gameserver \
     && chown gameserver:gameserver /srv/entrypoint.sh \
     && chmod +x /srv/entrypoint.sh
+
+# SteamInit crash fix
+RUN mkdir -pv /home/gameserver/.steam/sdk32/ \
+    && ln -s /home/gameserver/.steam/steamcmd/linux32/steamclient.so /home/gameserver/.steam/sdk32/steamclient.so
+
+ENTRYPOINT ["/srv/entrypoint.sh"]
