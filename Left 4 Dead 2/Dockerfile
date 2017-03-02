@@ -33,7 +33,7 @@ EXPOSE ${SRCDS_BIND_PORT}/tcp ${SRCDS_BIND_PORT}/udp
 USER gameserver
 
 # Steam fix
-mkdir -pv ~/.steam/sdk32/
-ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
+RUN mkdir -pv ~/.steam/sdk32/ \
+    && ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
 CMD ["/srv/l4d2server/entrypoint.sh"]
