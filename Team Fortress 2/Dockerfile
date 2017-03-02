@@ -10,7 +10,7 @@ ENV GAME=tf2
 COPY update_tf2_ds.txt /srv/${GAME}/update.txt
 
 # Install dependencies & assign files ownership
-RUN && apt-get update \
+RUN apt-get update \
     && apt-get install lib32ncurses5 \
     && rm -rf /var/lib/apt/lists/*
     && chown gameserver:gameserver /srv/${GAME}/update.txt
