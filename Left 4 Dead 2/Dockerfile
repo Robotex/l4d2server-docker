@@ -29,4 +29,11 @@ ENV SRCDS_BIND_PORT=27015
 ENV SRCDS_BIND_IP=0.0.0.0
 EXPOSE ${SRCDS_BIND_PORT}/tcp ${SRCDS_BIND_PORT}/udp
 
+# Switch to non root user
+USER gameserver
+
+# Steam fix
+mkdir -pv ~/.steam/sdk32/
+ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
+
 CMD ["/srv/l4d2server/entrypoint.sh"]
