@@ -8,13 +8,9 @@ ENV GAME=l4d2
 
 # Copy scripts
 COPY update_l4d2_ds.txt /srv/${GAME}/update.txt
-COPY ../entrypoint.sh /srv/${GAME}/entrypoint.sh
 
-# Add new user and assign ownership
-RUN adduser --disabled-password --gecos '' gameserver \
-    && chown gameserver:gameserver /srv/${GAME}/update.txt \
-    && chown gameserver:gameserver /srv/${GAME}/entrypoint.sh \
-    && chmod +x /srv/${GAME}/entrypoint.sh
+# Assign ownership
+RUN chown gameserver:gameserver /srv/${GAME}/update.txt
 
 # Specify port binding
 ENV BIND_PORT=27015

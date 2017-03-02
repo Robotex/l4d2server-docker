@@ -11,3 +11,10 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get -y install ca-certificates steamcmd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+COPY entrypoint.sh /srv/entrypoint.sh
+
+# Add new user and assign ownership
+RUN adduser --disabled-password --gecos '' gameserver \
+    && chown gameserver:gameserver /srv/entrypoint.sh \
+    && chmod +x /srv/entrypoint.sh
