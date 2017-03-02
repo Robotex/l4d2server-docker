@@ -4,10 +4,10 @@ FROM renshou/steamcmd:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Folder name (must be same as update script)
-ENV GAME=l4d2
+ENV GAME=gmod
 
 # Copy scripts
-COPY update_l4d2_ds.txt /srv/${GAME}/update.txt
+COPY update_gmod_ds.txt /srv/${GAME}/update.txt
 COPY ../entrypoint.sh /srv/${GAME}/entrypoint.sh
 
 # Add new user and assign ownership
@@ -28,5 +28,5 @@ USER gameserver
 RUN mkdir -pv ~/.steam/sdk32/ \
     && ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
-ENTRYPOINT ["/srv/l4d2/entrypoint.sh"]
-CMD ["+map c5m1_waterfront"]
+ENTRYPOINT ["/srv/gmod/entrypoint.sh"]
+CMD ["+map gm_construct"]
