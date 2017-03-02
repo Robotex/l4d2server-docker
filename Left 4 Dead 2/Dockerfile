@@ -3,6 +3,9 @@ FROM ubuntu:yakkety
 # Prevent some warnings
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Folder name (must be same as update script)
+ENV GAME=l4d2
+
 # Enable the multiverse source and install SteamCMD
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && dpkg --add-architecture i386 \
@@ -13,14 +16,14 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy scripts
-COPY update_l4d2_ds.txt /srv/l4d2server/update.txt
-COPY entrypoint.sh /srv/l4d2server/entrypoint.sh
+COPY update_l4d2_ds.txt /srv/${GAME}/update.txt
+COPY entrypoint.sh /srv/${GAME}/entrypoint.sh
 
 # Add new user and assign ownership
 RUN adduser --disabled-password --gecos '' gameserver \
-    && chown gameserver:gameserver /srv/l4d2server/update.txt \
-    && chown gameserver:gameserver /srv/l4d2server/entrypoint.sh \
-    && chmod +x /srv/l4d2server/entrypoint.sh
+    && chown gameserver:gameserver /srv/${GAME}/update.txt \
+    && chown gameserver:gameserver /srv/${GAME}/entrypoint.sh \
+    && chmod +x /srv/${GAME}/entrypoint.sh
 
 VOLUME ["/srv/l4d2server/"]
 
@@ -28,9 +31,6 @@ VOLUME ["/srv/l4d2server/"]
 ENV BIND_PORT=27015
 ENV BIND_IP=0.0.0.0
 EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
-
-# Folder name (must be same as update script)
-ENV GAME=l4d2
 
 # SRCDS arguments
 ENV SRCDS_MAP=c5m1_waterfront
@@ -42,5 +42,5 @@ USER gameserver
 RUN mkdir -pv ~/.steam/sdk32/ \
     && ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
-ENTRYPOINT ["/srv/l4d2server/entrypoint.sh"]
+ENTRYPOINT ["/srv/l4d2/entrypoint.sh"]
 CMD ["+map c5m1_waterfront"]
