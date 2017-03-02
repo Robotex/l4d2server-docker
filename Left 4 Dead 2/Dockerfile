@@ -1,19 +1,10 @@
-FROM ubuntu:yakkety
+FROM renshou/steamcmd:latest
 
 # Prevent some warnings
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Folder name (must be same as update script)
 ENV GAME=l4d2
-
-# Enable the multiverse source and install SteamCMD
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
-    && dpkg --add-architecture i386 \
-    && apt-get update \
-    && echo steamcmd steam/question select I AGREE | debconf-set-selections \
-    && apt-get -y install ca-certificates steamcmd \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 # Copy scripts
 COPY update_l4d2_ds.txt /srv/${GAME}/update.txt
@@ -24,8 +15,6 @@ RUN adduser --disabled-password --gecos '' gameserver \
     && chown gameserver:gameserver /srv/${GAME}/update.txt \
     && chown gameserver:gameserver /srv/${GAME}/entrypoint.sh \
     && chmod +x /srv/${GAME}/entrypoint.sh
-
-VOLUME ["/srv/l4d2server/"]
 
 # Specify port binding
 ENV BIND_PORT=27015
