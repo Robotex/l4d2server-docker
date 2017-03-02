@@ -25,9 +25,15 @@ RUN adduser --disabled-password --gecos '' gameserver \
 VOLUME ["/srv/l4d2server/"]
 
 # Specify port binding
-ENV SRCDS_BIND_PORT=27015
-ENV SRCDS_BIND_IP=0.0.0.0
-EXPOSE ${SRCDS_BIND_PORT}/tcp ${SRCDS_BIND_PORT}/udp
+ENV BIND_PORT=27015
+ENV BIND_IP=0.0.0.0
+EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
+
+# Folder name (must be same as update script)
+ENV GAME=l4d2
+
+# SRCDS arguments
+ENV SRCDS_MAP=c5m1_waterfront
 
 # Switch to non root user
 USER gameserver
@@ -36,4 +42,5 @@ USER gameserver
 RUN mkdir -pv ~/.steam/sdk32/ \
     && ln -s ~/.steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
-CMD ["/srv/l4d2server/entrypoint.sh"]
+ENTRYPOINT ["/srv/l4d2server/entrypoint.sh"]
+CMD ["+map c5m1_waterfront"]
