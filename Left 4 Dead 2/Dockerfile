@@ -11,8 +11,8 @@ ENV BIND_PORT=27015
 ENV BIND_IP=0.0.0.0
 
 # Copy scripts
-COPY update.txt /srv/${GAME}
-COPY start.sh /srv/${GAME}
+COPY update.txt /srv/${GAME}/update.txt
+COPY start.sh /srv/${GAME}/start.sh
 
 # Assign ownership
 RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh \
