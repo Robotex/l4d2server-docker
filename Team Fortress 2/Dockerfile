@@ -23,4 +23,4 @@ EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 # Switch to non root user
 USER gameserver
 
-CMD ["-game tf2", "+map ctf_2fort"]
+CMD ["-game tf", "+map ctf_2fort"]
