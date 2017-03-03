@@ -9,8 +9,11 @@ ENV GAME=gmod
 # Copy scripts
 COPY update_gmod_ds.txt /srv/${GAME}/update.txt
 
-# Assign ownership
-RUN chown gameserver:gameserver /srv/${GAME}/update.txt
+# Install dependencies & assign files ownership
+RUN apt-get update \
+    && apt-get -y install lib32ncurses5 \
+    && rm -rf /var/lib/apt/lists/* \
+    && chown gameserver:gameserver /srv/${GAME}/update.txt
 
 # Specify port binding
 ENV BIND_PORT=27015
