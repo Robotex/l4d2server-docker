@@ -7,4 +7,4 @@ else
     /usr/games/steamcmd +runscript /srv/$GAME/update.txt
 fi
 
-/srv/$GAME/start.sh "$@"
+source /srv/$GAME/start.sh "$@"
