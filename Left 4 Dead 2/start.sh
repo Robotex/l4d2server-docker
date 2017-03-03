@@ -9,7 +9,6 @@ fi
 if [ ! -d /srv/${GAME}/addons ]
 then
     mkdir /srv/${GAME}/addons
-    touch /srv/${GAME}/addons/putyouraddonshere.txt
     mount --bind --verbose /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2/addons
 fi
 if [ ! -d /srv/${GAME}/cfg ]
