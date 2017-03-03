@@ -12,7 +12,7 @@ COPY update_tf2_ds.txt /srv/${GAME}/update.txt
 # Install dependencies & assign files ownership
 RUN apt-get update \
     && apt-get -y install lib32ncurses5 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
     && chown gameserver:gameserver /srv/${GAME}/update.txt
 
 # Specify port binding
