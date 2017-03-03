@@ -14,9 +14,13 @@ ENV BIND_IP=0.0.0.0
 COPY update.txt /srv/${GAME}/update.txt
 COPY start.sh /srv/${GAME}/start.sh
 
-# Assign ownership
+# Assign ownership and mount user customization folders
 RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh \
-    && chmod +x /srv/${GAME}/start.sh
+    && chmod +x /srv/${GAME}/start.sh \
+    && mkdir /srv/${GAME}/addons
+    && mkdir /srv/${GAME}/cfg
+    && mount --bind --verbose /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2/addons
+    && mount --bind --verbose /srv/${GAME}/cfg /srv/${GAME}/serverfiles/left4dead2/cfg  
 
 # Switch to non root user
 USER gameserver
