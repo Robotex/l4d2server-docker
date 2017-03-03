@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV GAME=gmod
 
 # Copy scripts
-COPY update_gmod_ds.txt /srv/${GAME}/update.txt
+COPY update.txt /srv/${GAME}
 
 # Install dependencies & assign files ownership
 RUN apt-get update \
@@ -15,10 +15,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && chown gameserver:gameserver /srv/${GAME}/update.txt
 
-# Specify port binding
+# Default port binding
 ENV BIND_PORT=27015
 ENV BIND_IP=0.0.0.0
-EXPOSE ${BIND_PORT}/tcp ${BIND_PORT}/udp
 
 # Switch to non root user
 USER gameserver
