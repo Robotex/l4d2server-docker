@@ -11,7 +11,7 @@ then
     if [ ! -L /srv/${GAME}/serverfiles/left4dead2/addons ]
     then
         cp -r /srv/${GAME}/serverfiles/left4dead2/addons/* /srv/${GAME}/addons
-        rm -rf /srv/${GAME}/serverfiles/left4dead2/addons
+        mv /srv/${GAME}/serverfiles/left4dead2/addons /srv/${GAME}/serverfiles/left4dead2/addons_backup
         ln -s /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2
     fi
 
@@ -33,7 +33,7 @@ then
     if [ ! -L /srv/${GAME}/serverfiles/left4dead2/cfg ]
     then
         cp -r /srv/${GAME}/serverfiles/left4dead2/cfg/* /srv/${GAME}/cfg
-        rm -rf /srv/${GAME}/serverfiles/left4dead2/cfg
+        mv /srv/${GAME}/serverfiles/left4dead2/cfg /srv/${GAME}/serverfiles/left4dead2/cfg_backup
         ln -s /srv/${GAME}/cfg /srv/${GAME}/serverfiles/left4dead2
     fi
 
