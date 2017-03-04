@@ -10,13 +10,17 @@ ENV GAME=l4d2
 ENV BIND_PORT=27015
 ENV BIND_IP=0.0.0.0
 
+# Download MM and SM
+ADD http://mirror.pointysoftware.net/alliedmodders/mmsource-1.10.6-linux.tar.gz /tmp/mm.tar.gz
+ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /tmp/sm.tar.gz
+
 # Copy scripts
 COPY update.txt /srv/${GAME}/update.txt
 COPY start.sh /srv/${GAME}/start.sh
 
 # Assign ownership
-RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh \
-    && chmod +x /srv/${GAME}/start.sh
+RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
+    && chmod +x /srv/${GAME}/start.sh \
 
 # Switch to non root user
 USER gameserver
