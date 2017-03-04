@@ -6,15 +6,10 @@ then
     exit;
 fi
 
-if [ ! -d /srv/${GAME}/addons ]
-then
-    mkdir /srv/${GAME}/addons
-    mount --bind --verbose /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2/addons
-fi
-if [ ! -d /srv/${GAME}/cfg ]
-then
-    mkdir /srv/${GAME}/cfg
-    mount --bind --verbose /srv/${GAME}/cfg /srv/${GAME}/serverfiles/left4dead2/cfg
-fi
+rm -rf /srv/${GAME}/serverfiles/left4dead2/addons
+ln -s /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2/addons
+
+rm -rf /srv/${GAME}/cfg
+ln -s /srv/${GAME}/cfg /srv/${GAME}/serverfiles/left4dead2/cfg
 
 /srv/$GAME/serverfiles/srcds_run -ip $BIND_IP -port $BIND_PORT -strictportbind "$@"
