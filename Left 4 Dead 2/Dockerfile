@@ -20,7 +20,7 @@ COPY start.sh /srv/${GAME}/start.sh
 
 # Assign ownership
 RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
-    && chmod +x /srv/${GAME}/start.sh \
+    && chmod +x /srv/${GAME}/start.sh
 
 # Switch to non root user
 USER gameserver
