@@ -4,5 +4,5 @@
 @NoPromptForPassword 1
 login anonymous 
 force_install_dir /srv/l4d2/serverfiles
-app_update 222860
+app_update 222860 validate
 quit
