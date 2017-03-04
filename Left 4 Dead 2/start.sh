@@ -8,15 +8,15 @@ fi
 
 if [ ! -L /srv/${GAME}/serverfiles/left4dead2/addons ]
 then
-    cp /srv/${GAME}/serverfiles/left4dead2/addons/. /srv/${GAME}/addons
+    cp -r /srv/${GAME}/serverfiles/left4dead2/addons/* /srv/${GAME}/addons
     rm -rf /srv/${GAME}/serverfiles/left4dead2/addons
     ln -s /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2
 fi
 
 if [ ! -L /srv/${GAME}/serverfiles/left4dead2/cfg ]
 then
-    cp /srv/${GAME}/serverfiles/left4dead2/cfg/. /srv/${GAME}/cfg
-    rm -rf /srv/${GAME}/serverfiles/left4dead2/cfg /srv/${GAME}/cfg
+    cp -r /srv/${GAME}/serverfiles/left4dead2/cfg/* /srv/${GAME}/cfg
+    rm -rf /srv/${GAME}/serverfiles/left4dead2/cfg
     ln -s /srv/${GAME}/cfg /srv/${GAME}/serverfiles/left4dead2
 fi
 
