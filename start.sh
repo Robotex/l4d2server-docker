@@ -21,7 +21,7 @@ then
     then
         mkdir /srv/${GAME}/sourcemod/
     fi
-    mv -v /srv/${GAME}/addons/sourcemod/* /srv/${GAME}/sourcemod/
+    mv /srv/${GAME}/addons/sourcemod/* /srv/${GAME}/sourcemod/
     rm -rf /srv/${GAME}/addons/sourcemod
     ln -s /srv/${GAME}/sourcemod/ /srv/${GAME}/addons
 
