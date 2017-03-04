@@ -15,8 +15,8 @@ then
         ln -s /srv/${GAME}/addons /srv/${GAME}/serverfiles/left4dead2
     fi
 
-    tar -zxvf -C /srv/${GAME} /tmp/mm.tar.gz
-    tar -zxvf -C /srv/${GAME} /tmp/sm.tar.gz
+    tar -zxvf /tmp/mm.tar.gz -C /srv/${GAME}
+    tar -zxvf /tmp/sm.tar.gz -C /srv/${GAME}
     mv -v /srv/${GAME}/addons/sourcemod/* /srv/${GAME}/sourcemod/
     rm -rf /srv/${GAME}/addons/sourcemod
     ln -s /srv/${GAME}/sourcemod/ /srv/${GAME}/addons
