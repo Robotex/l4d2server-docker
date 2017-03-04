@@ -1,41 +1,28 @@
-FROM ubuntu:xenial
-MAINTAINER Robotex
+FROM renshou/steamcmd:latest
 
 # Prevent some warnings
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install dependencies
-RUN apt-get update && apt-get install lib32gcc1 wget -y
+# Folder name (must be same as update script)
+ENV GAME=l4d2
 
-# Copy script
-COPY downloader.sh /tmp
-COPY l4d2server-entrypoint.sh /tmp
+# Default port binding
+ENV BIND_PORT=27015
+ENV BIND_IP=0.0.0.0
 
-# Add new user and assign ownership
-RUN adduser --disabled-password --gecos '' l4d2server && chown l4d2server:l4d2server /tmp/downloader.sh && chmod +x /tmp/downloader.sh && mv /tmp/downloader.sh /home/l4d2server/ && chown l4d2server:l4d2server /tmp/l4d2server-entrypoint.sh && chmod +x /tmp/l4d2server-entrypoint.sh && mv /tmp/l4d2server-entrypoint.sh /home/l4d2server/
-USER l4d2server
+# Download MM and SM
+ADD http://mirror.pointysoftware.net/alliedmodders/mmsource-1.10.6-linux.tar.gz /tmp/mm.tar.gz
+ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /tmp/sm.tar.gz
 
-# Create steamcmd directory
-RUN mkdir ~/steamcmd
+# Copy scripts
+COPY update.txt /srv/${GAME}/update.txt
+COPY start.sh /srv/${GAME}/start.sh
 
-# Download and extract SteamCMD for Linux
-WORKDIR /home/l4d2server/steamcmd/
-RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && tar -xf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz && mv ../downloader.sh ./
+# Assign ownership
+RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
+    && chmod +x /srv/${GAME}/start.sh
 
-# Install Left 4 Dead 2
-RUN ./downloader.sh && rm downloader.sh
+# Switch to non root user
+USER gameserver
 
-# SteamCMD fix
-WORKDIR /home/l4d2server/
-RUN mkdir -pv ~/.steam/sdk32 && ln -s ~/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
-
-# VOLUME ["/home/l4d2server/serverfiles/left4dead2/addons", "/home/l4d2server/serverfiles/left4dead2/cfg"]
-
-# Specify port binding
-ENV SRCDS_BIND_PORT=27015
-ENV SRCDS_BIND_IP=0.0.0.0
-EXPOSE ${SRCDS_BIND_PORT}/tcp
-EXPOSE ${SRCDS_BIND_PORT}/udp
-
-ENTRYPOINT ["./l4d2server-entrypoint.sh", "-game", "left4dead2", "-strictportbind", "-port", "echo $SRCDS_BIND_PORT", "-ip", "echo $SRCDS_BIND_IP", "+clientport", "27005"]
-CMD ["+map", "c5m1_waterfront", "+servercfgfile", "l4d2-server.cfg", "-maxplayers", "12"]
+CMD ["-game left4dead2", "+map c5m1_waterfront"]
