@@ -18,9 +18,14 @@ ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /t
 COPY update.txt /srv/${GAME}/update.txt
 COPY start.sh /srv/${GAME}/start.sh
 
+# Copy cfg
+# COPY server.cfg /srv/${GAME}/server.cfg
+
 # Assign ownership
 RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
-    && chmod +x /srv/${GAME}/start.sh
+#/srv/${GAME}/server.cfg \
+    && chmod +x /srv/${GAME}/start.sh \
+    && ln -s /srv/${GAME}/serverfiles/left4dead2/maps /srv/${GAME}/maps
 
 # Switch to non root user
 USER gameserver
