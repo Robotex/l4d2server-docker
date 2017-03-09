@@ -19,13 +19,14 @@ COPY update.txt /srv/${GAME}/update.txt
 COPY start.sh /srv/${GAME}/start.sh
 
 # Copy cfg
-# COPY server.cfg /srv/${GAME}/server.cfg
+COPY server.cfg /srv/${GAME}/serverfiles/left4dead2/cfg/server.cfg
 
 # Assign ownership
-RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
-#/srv/${GAME}/server.cfg \
+RUN chown gameserver:gameserver /srv/${GAME}/update.txt /srv/${GAME}/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz /srv/${GAME}/server.cfg \
     && chmod +x /srv/${GAME}/start.sh \
-    && ln -s /srv/${GAME}/serverfiles/left4dead2/maps /srv/${GAME}/maps
+    && ln -s /srv/${GAME}/serverfiles/left4dead2/addons /srv/${GAME}/addons \
+    && ln -s /srv/${GAME}/serverfiles/left4dead2/cfg/server.cfg /srv/${GAME}/server.cfg \
+    && ln -s /srv/${GAME}/serverfiles/left4dead2/cfg/sourcemod /srv/${GAME}/sourcemod_cfg
 
 # Switch to non root user
 USER gameserver
