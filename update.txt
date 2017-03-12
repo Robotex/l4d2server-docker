@@ -3,6 +3,6 @@
 @ShutdownOnFailedCommand 0 //set to 0 if updating multiple servers at once
 @NoPromptForPassword 1
 login anonymous 
-force_install_dir /srv/l4d2/serverfiles
+force_install_dir /srv/srcds/serverfiles
 app_update 222860 validate
 quit
