@@ -7,6 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV BIND_PORT=27015
 ENV BIND_IP=0.0.0.0
 
+# SRCDS parameters
+ENV SRCDS_GAME left4dead2
+
 # Download MM and SM
 ADD http://mirror.pointysoftware.net/alliedmodders/mmsource-1.10.6-linux.tar.gz /tmp/mm.tar.gz
 ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /tmp/sm.tar.gz
@@ -28,4 +31,4 @@ RUN chown gameserver:gameserver /srv/srcds/update.txt /srv/srcds/start.sh /tmp/m
 # Switch to non root user
 USER gameserver
 
-CMD ["-game left4dead2", "+map c5m1_waterfront"]
+CMD ["+map c5m1_waterfront"]
