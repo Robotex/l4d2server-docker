@@ -28,7 +28,7 @@ RUN chown gameserver:gameserver /srv/srcds/update.txt /srv/srcds/start.sh /tmp/m
     && ln -s /srv/srcds/serverfiles/left4dead2/cfg/server.cfg /srv/srcds/server.cfg \
     && ln -s /srv/srcds/serverfiles/left4dead2/cfg/sourcemod /srv/srcds/sourcemod_cfg \
     && mkdir -p /srv/srcds/serverfiles/left4dead2/cfg/sourcemod \
-    && chown -R gameserver:gameserver /src/srcds/
+    && chown -R gameserver:gameserver /srv/srcds/
 
 # Switch to non root user
 USER gameserver
