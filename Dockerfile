@@ -9,6 +9,7 @@ ENV BIND_IP=0.0.0.0
 
 # SRCDS parameters
 ENV SRCDS_GAME=left4dead2
+ENV SRCDS_HOSTNAME="Speranza's L4D2"
 
 # Download MM and SM
 ADD http://mirror.pointysoftware.net/alliedmodders/mmsource-1.10.6-linux.tar.gz /tmp/mm.tar.gz
