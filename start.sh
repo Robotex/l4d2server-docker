@@ -9,9 +9,7 @@ fi
 while test $# -gt 0
 do
     case "$1" in
-        --install-sm)
-            tar -zxvf /tmp/mm.tar.gz -C /srv/srcds
-            tar -zxvf /tmp/sm.tar.gz -C /srv/srcds
+        --install-sm) tar -zxvf /tmp/mm.tar.gz -C /srv/srcds && tar -zxvf /tmp/sm.tar.gz -C /srv/srcds
             ;;
         --*) echo "bad option $1"
             ;;
