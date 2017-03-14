@@ -25,7 +25,7 @@ COPY server.cfg /srv/srcds/server.cfg
 # Create forward mount symlinks
 RUN mkdir -p /mnt/srcds \
     && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/sourcemod_cfg \
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/sourcemod_cfg
 
 # Create reverse mount symlinks
 RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
