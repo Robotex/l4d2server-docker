@@ -17,4 +17,4 @@ do
     shift
 done
 
-/srv/srcds/serverfiles/srcds_run -autoupdate -steam_dir /usr/games/ -steamcmd_script /srv/srcds/update.txt -game $SRCDS_GAME -ip $BIND_IP -port $BIND_PORT -strictportbind +hostname \"${SRCDS_HOSTNAME}\" "$@"
+/srv/srcds/serverfiles/srcds_run -autoupdate -steam_dir /usr/lib/games/steam/ -steamcmd_script /srv/srcds/update.txt -game $SRCDS_GAME -ip $BIND_IP -port $BIND_PORT -strictportbind +hostname \"${SRCDS_HOSTNAME}\" +servercfgfile /srv/srcds/server.cfg "$@"
