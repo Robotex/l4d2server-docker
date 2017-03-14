@@ -20,16 +20,21 @@ COPY update.txt /srv/srcds/update.txt
 COPY start.sh /srv/srcds/start.sh
 
 # Copy cfg
-COPY server.cfg /srv/srcds/serverfiles/left4dead2/cfg/server.cfg
+COPY server.cfg /srv/srcds/server.cfg
+
+# Create forward mount symlinks
+RUN mkdir -p /mnt/srcds \
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/sourcemod_cfg \
+
+# Create reverse mount symlinks
+RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
+    && ln -s /srv/srcds/sourcemod_cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
+    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons
 
 # Assign ownership
-RUN chown gameserver:gameserver /srv/srcds/update.txt /srv/srcds/start.sh /tmp/mm.tar.gz /tmp/sm.tar.gz \
-    && chmod +x /srv/srcds/start.sh \
-    && ln -s /srv/srcds/serverfiles/left4dead2/addons /srv/srcds/addons \
-    && ln -s /srv/srcds/serverfiles/left4dead2/cfg/server.cfg /srv/srcds/server.cfg \
-    && ln -s /srv/srcds/serverfiles/left4dead2/cfg/sourcemod /srv/srcds/sourcemod_cfg \
-    && mkdir -p /srv/srcds/serverfiles/left4dead2/cfg/sourcemod \
-    && chown -R gameserver:gameserver /srv/srcds/
+RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
+    && chmod +x /srv/srcds/start.sh
 
 # Switch to non root user
 USER gameserver
