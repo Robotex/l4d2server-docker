@@ -19,23 +19,22 @@ ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /t
 COPY update.txt /srv/srcds/update.txt
 COPY start.sh /srv/srcds/start.sh
 
-# Copy cfg
-COPY server.cfg /srv/srcds/server.cfg
+# Copy cfg callback
+COPY server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
 
 # Create forward mount symlinks
 RUN mkdir -p /mnt/srcds \
     && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg_sourcemod \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg /mnt/srcds/server.cfg
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg-sourcemod \
+    && ln -s /srv/srcds/cfg/ /mnt/srcds/cfg
 
 # Create reverse mount symlinks
 RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
-    && ln -s /srv/srcds/cfg_sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
-    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
-    && ln -s /srv/srcds/server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
+    && ln -s /srv/srcds/cfg-sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
+    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons
 
 # Create user customization folders
-RUN mkdir /srv/srcds/cfg_sourcemod /srv/srcds/addons
+RUN mkdir /srv/srcds/cfg-sourcemod /srv/srcds/addons /srv/srcds/cfg
 
 # Assign ownership
 RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
