@@ -32,7 +32,7 @@ RUN mkdir -p /mnt/srcds \
 RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
     && ln -s /srv/srcds/cfg_sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
     && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
-    && ln -s /srv/srcds/server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/server.cfg
+    && ln -s /srv/srcds/server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
 
 # Assign ownership
 RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
