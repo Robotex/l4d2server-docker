@@ -26,16 +26,16 @@ COPY server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
 RUN mkdir -p /mnt/srcds \
     && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
     && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg-sourcemod \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server /mnt/srcds/cfg
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server /mnt/srcds/cfg-server
 
 # Create reverse mount symlinks
 RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
-    && ln -s /srv/srcds/cfg-sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
-    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
-    && ln -s /srv/srcds/cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server
+    && ln -s /srv/srcds/mods/cfg/sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
+    && ln -s /srv/srcds/mods/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
+    && ln -s /srv/srcds/mods/cfg/server /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server
 
 # Create user customization folders
-RUN mkdir /srv/srcds/cfg-sourcemod /srv/srcds/addons /srv/srcds/cfg
+RUN mkdir /srv/srcds/mods/cfg/sourcemod /srv/srcds/mods/addons /srv/srcds/mods/cfg/server
 
 # Assign ownership
 RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
