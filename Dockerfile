@@ -25,12 +25,14 @@ COPY server.cfg /srv/srcds/server.cfg
 # Create forward mount symlinks
 RUN mkdir -p /mnt/srcds \
     && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg_sourcemod
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg_sourcemod \
+    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg /mnt/srcds/server.cfg
 
 # Create reverse mount symlinks
 RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
     && ln -s /srv/srcds/cfg_sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
-    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons
+    && ln -s /srv/srcds/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
+    && ln -s /srv/srcds/server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/server.cfg
 
 # Assign ownership
 RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
