@@ -35,7 +35,7 @@ RUN mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
     && ln -s /srv/srcds/mods/cfg/server /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server
 
 # Create user customization folders
-RUN mkdir /srv/srcds/mods/cfg/sourcemod /srv/srcds/mods/addons /srv/srcds/mods/cfg/server
+RUN mkdir -p /srv/srcds/mods/cfg/sourcemod /srv/srcds/mods/addons /srv/srcds/mods/cfg/server
 
 # Assign ownership
 RUN chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
