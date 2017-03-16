@@ -13,7 +13,8 @@ ENV SRCDS_HOSTNAME="Speranza's L4D2"
 
 # Download MM and SM
 ADD http://mirror.pointysoftware.net/alliedmodders/mmsource-1.10.6-linux.tar.gz /tmp/mm.tar.gz
-ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /tmp/sm.tar.gz
+# ADD https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5974-linux.tar.gz /tmp/sm.tar.gz
+ADD http://www.sourcemod.net/smdrop/1.7/sourcemod-1.7.3-git5303-linux.tar.gz /tmp/sm.tar.gz
 
 # Copy scripts
 COPY update.txt /srv/srcds/update.txt
