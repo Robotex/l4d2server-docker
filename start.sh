@@ -6,4 +6,4 @@ then
     exit;
 fi
 
-/srv/srcds/serverfiles/srcds_run "$@" -autoupdate -steam_dir ~/.steam/steamcmd -steamcmd_script /srv/srcds/update.txt -game $SRCDS_GAME -ip $BIND_IP -port $BIND_PORT -strictportbind +hostname \"${SRCDS_HOSTNAME}\"
+/srv/srcds/serverfiles/srcds_run -game $SRCDS_GAME -ip $BIND_IP -port $BIND_PORT -strictportbind "$@" -autoupdate -steam_dir ~/.steam/steamcmd -steamcmd_script /srv/srcds/update.txt +hostname \"${SRCDS_HOSTNAME}\"
