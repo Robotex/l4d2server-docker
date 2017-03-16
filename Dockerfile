@@ -12,8 +12,7 @@ ENV SRCDS_GAME=left4dead2
 ENV SRCDS_HOSTNAME="Speranza's L4D2"
 
 # Copy scripts
-COPY update.txt /srv/srcds/update.txt
-COPY start.sh /srv/srcds/start.sh
+COPY ./scripts/ /srv/srcds/
 
 # Copy cfg callback
 COPY server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
@@ -30,8 +29,8 @@ RUN mkdir -p /mnt/srcds \
     && ln -s /srv/srcds/mods/cfg/server /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server \
 # Create user customization folders
     && mkdir -p /srv/srcds/mods/cfg/sourcemod /srv/srcds/mods/addons /srv/srcds/mods/cfg/server \
-# Assign ownership
-    && chown -R gameserver:gameserver /srv/srcds /tmp/mm.tar.gz /tmp/sm.tar.gz \
+# Change permissions
+    && chown -R gameserver:gameserver /srv/srcds \
     && chmod +x /srv/srcds/start.sh
 
 # Switch to non root user
