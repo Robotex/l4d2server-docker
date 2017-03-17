@@ -12,26 +12,26 @@ ENV SRCDS_GAME=left4dead2
 ENV SRCDS_HOSTNAME="Speranza's L4D2"
 
 # Copy scripts
-COPY ./scripts/ /srv/srcds/
+COPY ./scripts/ /usr/games/gameserver/
 
 # Copy cfg callback
-COPY server.cfg /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server.cfg
+COPY server.cfg /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg/server.cfg
 
 # Create forward mount symlinks
 RUN mkdir -p /mnt/srcds \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg-sourcemod \
-    && ln -s /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server /mnt/srcds/cfg-server \
+    && ln -s /usr/games/gameserver/serverfiles/${SRCDS_GAME}/addons /mnt/srcds/addons \
+    && ln -s /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg/sourcemod /mnt/srcds/cfg-sourcemod \
+    && ln -s /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg/server /mnt/srcds/cfg-server \
 # Create reverse mount symlinks
-    && mkdir -p /srv/srcds/serverfiles/${SRCDS_GAME}/cfg \
-    && ln -s /srv/srcds/mods/cfg/sourcemod /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
-    && ln -s /srv/srcds/mods/addons /srv/srcds/serverfiles/${SRCDS_GAME}/addons \
-    && ln -s /srv/srcds/mods/cfg/server /srv/srcds/serverfiles/${SRCDS_GAME}/cfg/server \
+    && mkdir -p /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg \
+    && ln -s /usr/games/gameserver/mods/cfg/sourcemod /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg/sourcemod \
+    && ln -s /usr/games/gameserver/mods/addons /usr/games/gameserver/serverfiles/${SRCDS_GAME}/addons \
+    && ln -s /usr/games/gameserver/mods/cfg/server /usr/games/gameserver/serverfiles/${SRCDS_GAME}/cfg/server \
 # Create user customization folders
-    && mkdir -p /srv/srcds/mods/cfg/sourcemod /srv/srcds/mods/addons /srv/srcds/mods/cfg/server \
+    && mkdir -p /usr/games/gameserver/mods/cfg/sourcemod /usr/games/gameserver/mods/addons /usr/games/gameserver/mods/cfg/server \
 # Change permissions
-    && chown -R gameserver:gameserver /srv/srcds \
-    && chmod +x /srv/srcds/start.sh
+    && chown -R gameserver:gameserver /usr/games/gameserver \
+    && chmod +x /usr/games/gameserver/start.sh
 
 # Switch to non root user
 USER gameserver
