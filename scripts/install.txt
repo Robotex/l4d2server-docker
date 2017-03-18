@@ -1,8 +1,8 @@
-// update_l4d2_ds.txt
+// install_l4d2_ds.txt
 //
 @ShutdownOnFailedCommand 1 //set to 0 if updating multiple servers at once
 @NoPromptForPassword 1
 login anonymous 
 force_install_dir /usr/games/gameserver/serverfiles
-app_update 222860
+app_update 222860 validate
 quit
