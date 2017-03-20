@@ -26,7 +26,7 @@ _trapUSR1() {
     kill -10 "$childpid" 2>/dev/null
 }
 
-rm /var/lock/gameserver.lock | true
+rm /var/lock/gameserver.lock || true
 
 trap _trapTERM 15
 trap _trapINT 2
