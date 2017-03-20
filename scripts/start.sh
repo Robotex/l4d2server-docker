@@ -8,10 +8,11 @@ fi
 
 _trap() {
     echo "---Stop signal received!---"
-    touch /var/lock/gameserver.lock
+    kill -15 "$childpid" 2>/dev/null
 }
 
 _trapForward() {
+    echo "---Forwarding signal!---"
     kill -2 "$childpid" 2>/dev/null
 }
 
