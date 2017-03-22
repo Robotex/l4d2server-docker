@@ -29,9 +29,6 @@ _trapUSR1() {
 rm /var/lock/gameserver.lock || true
 
 trap _trapTERM 15
-trap _trapINT 2
-trap _trapHUP 1
-trap _trapUSR1 10
 
 /usr/games/gameserver/serverfiles/srcds_run -game $SRCDS_GAME -ip $BIND_IP -port $BIND_PORT -strictportbind "$@" -norestart -steam_dir ~/.steam/steamcmd -steamcmd_script /usr/games/gameserver/update.txt +hostname \"${SRCDS_HOSTNAME}\" &
 
@@ -40,5 +37,4 @@ while wait $childpid; test $? -gt 128; do
     kill -0 $childpid 2> /dev/null || break;
 done
 
-trap - 2
 trap - 15
